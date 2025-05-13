@@ -113,27 +113,6 @@ In this section, we define the key elements of the business model for the Climat
 ### **Entity-Relationship Diagram (ERD)**:
 ![alt text](https://github.com/andrestorresaioros/Databases-II/blob/main/Workshop%20%231/Initial%20Database%20Architecture/MER.png)
 
----
-
-## **Repository Structure**
-
-```
-project-name/
-├── README.md
-├── LICENSE
-├── .gitignore
-├── src/                  # Source code
-│   ├── ingestion/
-│   ├── prediction/
-│   ├── recommendation/
-│   └── reporting/
-├── docs/                 # Documentation
-├── tests/                # Unit and integration tests
-├── Dockerfile
-├── docker-compose.yml
-```
-
-
 
 ## **Authors**
 
