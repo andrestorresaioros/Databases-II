@@ -6,7 +6,7 @@
 
 This project aims to develop a **Climate Risk Prediction System** designed for agricultural fields. The system leverages **big data**, **machine learning models**, and **real-time weather data** to predict climate-related risks (such as droughts, floods, and storms). The platform provides actionable recommendations to farmers based on the climate predictions, helping them take proactive measures to protect their crops.
 
-The system will utilize sensors, satellite data, and historical climate data to provide accurate predictions, and it will offer a **business intelligence** module for management insights.
+The system will utilize satellite data, and historical climate data to provide accurate predictions, and it will offer a **business intelligence** module for management insights.
 
 ---
 
