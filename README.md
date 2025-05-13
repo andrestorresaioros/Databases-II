@@ -111,6 +111,7 @@ In this section, we define the key elements of the business model for the Climat
 7. **Recommendation**: Stores recommendations based on predictions for specific fields.
 
 ### **Entity-Relationship Diagram (ERD)**:
+![alt text](https://github.com/andrestorresaioros/Databases-II/blob/main/Workshop%20%231/Initial%20Database%20Architecture/MER.png)
 
 ---
 
