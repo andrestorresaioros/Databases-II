@@ -113,6 +113,111 @@ In this section, we define the key elements of the business model for the Climat
 ### **Entity-Relationship Diagram (ERD)**:
 ![alt text](https://github.com/andrestorresaioros/Databases-II/blob/main/Workshop%20%231/Initial%20Database%20Architecture/MER.png)
 
+---
+
+## **System Architecture**
+
+The AgroClimaIQ platform follows a layered architecture that supports:
+
+- Continuous data ingestion via external APIs and synthetic generators (e.g., OpenWeather, NOAA, Python scripts).
+- Real-time and batch processing using Apache Spark and internal scripts.
+- Structured data storage in PostgreSQL and semi-structured storage in MongoDB.
+- Data lake for raw climate archives (e.g., Amazon S3, HDFS).
+- Business Intelligence module using Metabase or Apache Superset.
+- REST and GraphQL APIs developed with FastAPI.
+- Frontend interfaces built with React and secured via JWT/OAuth2.
+- Optional Redis for caching frequent predictions and alerts.
+### **High-level Architecture Diagram**:
+![alt text](https://github.com/andrestorresaioros/Databases-II/blob/main/Workshop%20%232/Data%20System%20Architecture/Diagram.png)
+
+
+
+---
+
+## **Information Requirements**
+
+The platform must support the retrieval and storage of:
+
+- **User Profiles & Roles**: Role-based access, associated fields and preferences.
+- **Climate Predictions**: Events, probabilities, severity, timestamps, model IDs.
+- **Recommendations**: Linked to predictions, personalized to user and crop.
+- **Weather Data**: Timestamped records from stations and locations.
+- **Agricultural Fields**: Geolocation, crop type, ownership.
+- **Alerts**: Delivery tracking and alert history per user.
+- **API Raw Responses**: Stored in MongoDB for debugging and model validation.
+- **Interaction Logs**: Logs of usage patterns and feedback for UX and analytics.
+
+---
+
+## **Sample Queries**
+
+### Retrieve Users by Role
+```sql
+SELECT user_id, user_name, role, email
+FROM User
+WHERE role = 'Farmer';
+```
+
+### Recent Climate Risk Predictions
+```sql
+SELECT p.prediction_id, e.event_name, l.name AS location, p.probability, s.severity_type, p.timestamp
+FROM Prediction p
+JOIN Event_type e ON p.event_type_id = e.event_type_id
+JOIN Severity_level s ON p.severity_level_type_id = s.severity_level_id
+JOIN Location l ON p.location_id = l.location_id
+WHERE p.timestamp >= CURRENT_DATE - INTERVAL '7 days';
+```
+
+### Personalized Recommendations
+```sql
+SELECT u.user_name, c.crop_name, af.field_id, r.recommend_descrip, p.timestamp
+FROM Recommendation r
+JOIN Prediction p ON r.prediction_id = p.prediction_id
+JOIN Agriculture_Field af ON r.field_id = af.field_id
+JOIN Crop c ON af.crop_id = c.crop_id
+JOIN User u ON af.user_id = u.user_id
+WHERE u.user_id = 1
+ORDER BY p.timestamp DESC;
+```
+
+### Last 24h Weather Data
+```sql
+SELECT wd.timestamp, wd.temperature, wd.humidity, ws.station_name, l.name AS location
+FROM Weather_Data wd
+JOIN Weather_Station ws ON wd.station_id = ws.station_id
+JOIN Location l ON ws.location_id = l.location_id
+WHERE wd.timestamp BETWEEN NOW() - INTERVAL '1 DAY' AND NOW();
+```
+
+### Alerts Received by User
+```sql
+SELECT u.user_name, e.event_name, a.status, a.timestamp_sent
+FROM Alert a
+JOIN User u ON a.user_id = u.user_id
+JOIN Prediction p ON a.prediction_id = p.prediction_id
+JOIN Event_type e ON p.event_type_id = e.event_type_id
+WHERE u.user_id = 1
+ORDER BY a.timestamp_sent DESC;
+```
+
+### MongoDB - User Interaction Log (Latest 5)
+```javascript
+db.interaction_logs.find({
+  interaction_type: "recommendation_viewed",
+  user_id: "u001"
+}).sort({ timestamp: -1 }).limit(5);
+```
+
+### MongoDB - Raw API Responses
+```javascript
+db.api_responses.find({
+  source: "OpenWeather",
+  "location.name": "Cali",
+  timestamp: { $gte: ISODate("2025-05-27T00:00:00Z") }
+}).sort({ timestamp: -1 }).limit(10);
+```
+
+---
 
 ## **Authors**
 
