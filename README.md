@@ -179,12 +179,12 @@ The system was modeled using a 10-step methodology to design entities, attribute
 - Trackable predictions and alerts
 - Modular and scalable schema
 
-###Entity-Relationship Diagram (ERD):
+### Entity-Relationship Diagram (ERD):
 ![alt text](https://github.com/andrestorresaioros/Databases-II/blob/main/Workshop%20%231/Initial%20Database%20Architecture/MER.png)
 
 
 
-##Workshop No. 2
+## Workshop No. 2
 ## AgroClima: Data System Architecture and Information Retrieval
 
 ---
