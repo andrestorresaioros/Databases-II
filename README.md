@@ -1,134 +1,243 @@
-# Databases-II
-
-# Project Name: Climate Risk Prediction System
-
-## **Project Overview**
-
-This project aims to develop a **Climate Risk Prediction System** designed for agricultural fields. The system leverages **big data**, **machine learning models**, and **real-time weather data** to predict climate-related risks (such as droughts, floods, and storms). The platform provides actionable recommendations to farmers based on the climate predictions, helping them take proactive measures to protect their crops.
-
-The system will utilize satellite data, and historical climate data to provide accurate predictions, and it will offer a **business intelligence** module for management insights.
+# Databases II 
+## Workshop No. 1  
+##  AgroClima: A Smart Agro-Climatic Decision Support Platform
 
 ---
 
-## **Business Model Canvas**
+## Introduction to the Business Model
 
-In this section, we define the key elements of the business model for the Climate Risk Prediction System.
+AgroClima is a smart agro-climatic decision support platform designed to provide advanced climate-based solutions for farmers and agricultural organizations. The core idea is to leverage climate data and artificial intelligence tools to deliver accurate and timely recommendations that enhance agricultural decision-making in the face of adverse weather conditions.
 
-- **Key Partners**:  
-  - Weather data providers (e.g., OpenWeather, Copernicus)
-  - Sensor manufacturers for real-time climate data
-  - Cloud providers (e.g., AWS, Google Cloud)
-  - Agricultural stakeholders (e.g., farmers, cooperatives)
+The platform addresses the high vulnerability of the agricultural sector to extreme weather events such as droughts, frosts, and heavy rainfall, which result in substantial crop losses, reduced productivity, and threats to food security. Currently, many farmers lack effective and accessible tools to anticipate and adapt to these challenges.
 
-- **Key Activities**:  
-  - Data collection and integration
-  - Development of predictive models using machine learning
-  - User interface and dashboard creation
-  - Implementation of a recommendation system for farmers
-
-- **Value Propositions**:  
-  - Real-time climate risk predictions for agricultural fields
-  - Personalized recommendations to help farmers protect their crops
-  - Business intelligence insights for farm managers
-
-- **Customer Relationships**:  
-  - Direct customer support for farmers
-  - Regular system updates and notifications
-
-- **Customer Segments**:  
-  - Farmers and agricultural field owners
-  - Agricultural cooperatives and consultancy firms
-
-- **Channels**:  
-  - Mobile app and web platform
-  - SMS notifications for emergency alerts
-
-- **Key Resources**:  
-  - Machine learning models for climate predictions
-  - Weather data sources
-  - Cloud infrastructure for data storage and processing
-
-- **Cost Structure**:  
-  - Data storage and processing costs
-  - Maintenance and development of prediction models
-  - Infrastructure and hardware costs (sensors)
-
-- **Revenue Streams**:  
-  - Subscription-based service for farmers
-  - Licensing of the prediction system to agricultural organizations
+The final product is a user-friendly web platform adapted for rural areas with limited connectivity. It will deliver personalized alerts, agricultural management recommendations, and optimized resource strategies (water, fertilizers), while providing institutions with access to regional climate risk information.
 
 ---
 
-## **Project Requirements**
+## Business Model Canvas
 
-### **Functional Requirements**
+### Key Partners
+- Weather data providers (OpenWeather, Copernicus, IDEAM)
+- IoT sensor manufacturers and distributors
+- Ministries of Agriculture, NGOs, and government agencies
+- Universities and research institutes
+- Payment platforms and rural banking services
+- Agricultural input distributors
 
-| Number | Requirement | Description | Priority |
-|--------|-------------|-------------|----------|
-| FR1 | User registration | Allow registration of farmers, technicians, and managers via email or federated authentication (Google, Microsoft). | High |
-| FR2 | Authentication and roles | Provide secure login with role-based access control to customize visible functionality based on user type. | High |
-| FR3 | Continuous data ingestion | Integrate data from open weather sources in real time using tools such as Kafka or AWS Kinesis. | High |
-| FR4 | Distributed storage | Store weather and agricultural data on a distributed, globally accessible basis with minimal latency. | High |
-| FR5 | Weather data queries | Allow users to visualize real-time and historical information about weather conditions in their area. | High |
-| FR6 | Predictive analytics | Run machine learning models to predict climate risks such as drought, frost, or heavy rainfall. | High |
-| FR7 | Customized recommendations | Issue intelligent suggestions for planting, irrigation, or fertilization based on microclimates and analyzed data. | Medium |
-| FR8 | Report generation | Produce customized reports for agricultural and governmental decision makers. | Medium |
-| FR9 | Administrative panel | Enable user management and general system statistics by the administrator. | High |
+### Key Activities
+- Design of forecasting and advisory services
+- Awareness and adoption campaigns
+- Strategic partnerships with public/private actors
+- Platform development and maintenance
 
-### **Non-Functional Requirements**
+### Value Propositions
 
-| Number | Requirement | Description | Priority |
-|--------|-------------|-------------|----------|
-| NFR1 | Performance | Process queries with a maximum latency of 5 seconds for weather searches and predictions in agricultural areas. | High |
-| NFR2 | Horizontal scalability | Allow adding nodes to handle large volumes of data and increase the number of concurrent users. | High |
-| NFR3 | High availability | Guarantee 99.9% uptime with failover and automatic failover mechanisms. | High |
-| NFR4 | Multi-location access | Allow access from multiple geographic regions with minimal load times through the use of CDNs or distributed clusters. | Medium |
-| NFR5 | Interoperability | Integrate with third-party APIs such as OpenWeather and Copernicus, as well as IoT devices using standard protocols. | Medium |
-| NFR6 | Usability | Design a responsive, intuitive, and fast web interface, accessible from different devices with low response times. | Medium |
-| NFR7 | Maintainability | Have a modular and well-documented architecture that facilitates system upgrades, corrections, and scaling. | Medium |
+**For Farmers:**
+- Localized and actionable recommendations
+- Risk mitigation for drought, frost, and rainfall
+- Efficient resource use (water/fertilizers)
+- Easy-to-use system
+
+**For Institutions:**
+- Access to agro-climatic reports and regional data
+- Tools for subsidy planning, insurance, and support
+- Support for public policies and climate risk mitigation
+
+### Customer Relationships
+- Multichannel technical assistance (chat, phone, email)
+- Onboarding and support for low-digitalization regions
+- Automated and personalized alerts
+
+### Customer Segments
+- Small and medium farmers
+- Technified producers with IoT integration
+- Local/national governments
+- Agribusinesses and climate-risk managers
+
+### Channels
+- Web platform adapted for rural connectivity
+- APIs for institutional integration
+- Implementation via agricultural agencies and cooperatives
+
+### Key Resources
+- Strategic alliances in agriculture/climate
+- Reliable satellite and climate data
+- AI/machine learning for predictive analytics
+- Scalable infrastructure for data processing
+
+### Cost Structure
+- Operation of partnerships and training
+- Processing and storage of satellite/climate data
+- Outreach campaigns
+- Continuous improvement of the recommendation system
+- Technical maintenance and infrastructure
+
+### Revenue Streams
+- Monthly or annual farmer subscriptions (tiered)
+- Institutional licenses for governments
+- Premium services: consulting, data, risk maps
+- Freemium model (basic free, advanced paid)
+- Sponsored access via insurance or input companies
 
 ---
 
-## **User Stories**
+## Functional Requirements
 
-### 1. As a farmer, I want to register using my email account so that I can access climate data and receive tailored recommendations.
-### 2. As a farm manager, I want to view real-time and historical weather data for my region so that I can plan activities effectively.
-### 3. As a client, I want to receive automatic alerts for upcoming extreme weather events in my area so that I can take preventive actions.
-### 4. As an administrator, I want to manage user accounts and assign roles to ensure appropriate access control.
-### 5. As an analyst, I want to generate reports about climate conditions and risk trends to support decision-making for stakeholders.
+| ID   | Requirement                  | Description                                                                                  | Priority |
+|------|------------------------------|----------------------------------------------------------------------------------------------|----------|
+| FR1  | User registration            | Allow farmers, technicians, and administrators to register using email or third-party login | High     |
+| FR2  | Authentication and access    | Secure login with differentiated access by role                                              | High     |
+| FR3  | Continuous data ingestion    | Ingest near real-time data from open or authorized weather sources                           | High     |
+| FR4  | Distributed data storage     | Efficient access and storage of data from any location with low latency                      | High     |
+| FR5  | Weather data queries         | Query and visualize current/historical weather conditions                                    | High     |
+| FR6  | Climate risk prediction      | Predict droughts, frosts, or heavy rainfall                                                  | High     |
+| FR7  | Agricultural recommendations | Generate recommendations based on microclimates                                              | Medium   |
+| FR8  | Report generation            | Create custom reports for users and institutions                                             | Medium   |
+| FR9  | Administrative panel         | Tools to manage users, roles, and system statistics                                          | High     |
 
 ---
 
-## **Initial Database Architecture**
+## Non-Functional Requirements
 
-### **Entities**:
-1. **User**: Stores information about the users (farmers, administrators).
-2. **Alert**: Stores weather alerts related to specific users.
-3. **Prediction**: Contains climate predictions for agricultural fields.
-4. **Agricultural_Field**: Represents fields associated with users and their geographical locations.
-5. **Location**: Stores geographic information for agricultural fields.
-6. **Weather_Data**: Represents real-time data collected from weather stations.
-7. **Recommendation**: Stores recommendations based on predictions for specific fields.
+| ID    | Requirement             | Description                                                                 | Priority |
+|-------|-------------------------|-----------------------------------------------------------------------------|----------|
+| NFR1  | Performance             | Timely responses to queries and predictions under expected data volumes     | High     |
+| NFR2  | Horizontal scalability  | Efficient scaling for growing users and data ingestion                      | High     |
+| NFR3  | High availability       | Minimal downtime through automatic recovery                                 | High     |
+| NFR4  | Multi-region access     | Consistent performance regardless of user location                          | Medium   |
+| NFR5  | Interoperability        | Integration with external data/APIs using standard protocols                | Medium   |
+| NFR6  | Usability               | Interface should be intuitive and responsive across devices and networks    | Medium   |
+| NFR7  | Maintainability         | Modular, well-documented architecture for scaling and updates               | Medium   |
 
-### **Entity-Relationship Diagram (ERD)**:
+---
+
+## Prioritization Strategy
+
+Requirements were prioritized using the following criteria:
+- **Impact on the end user**
+- **Operational dependency**
+- **Expected frequency of use**
+- **Strategic value**
+- **Effort vs. complexity**
+
+High and medium priorities were assigned collaboratively with developers and pilot users.
+
+---
+
+## 📈 Performance and Capacity Analysis
+
+### System Assumptions
+- 2,000 users in Year 1
+- 500 peak concurrent users (25%)
+- 1,200 sensors (1 record/minute → 1.7M records/day)
+- Rural bandwidth: 2–5 Mbps, with unstable latency
+- Peak usage: 5–8 AM and 6–9 PM
+
+### Performance Targets
+
+| Metric                  | Target                         | Source of Estimate                                       |
+|------------------------|---------------------------------|----------------------------------------------------------|
+| Response latency (p95) | ≤ 3 seconds                     | Based on UI/load tests over rural bandwidth              |
+| Response latency (p99) | ≤ 5 seconds                     | Ensures UX even in edge cases                           |
+| Data update delay      | ≤ 2 minutes                     | 1 min emission + 1 min ingestion                         |
+| Ingestion throughput   | 2,000 reg/s (6,000 peak)        | 1.7M records/day × safety factor (×3–5)                 |
+| Availability           | ≥ 99.5% uptime                  | Balanced for mid-tier infrastructure                    |
+| Payload size           | ≤ 150 KB                        | Suitable for 3G/4G loading under 0.5s                   |
+| Scalability            | Double throughput in < 1 hour   | Based on pilot auto-scaling results                     |
+
+**Source**: User interviews (n=50), field bandwidth tests, simulated workloads.
+
+---
+
+## 👥 User Stories
+
+| Role          | Story                                                                                       |
+|---------------|----------------------------------------------------------------------------------------------|
+| Farmer        | As a farmer, I want personalized alerts for my field so I can take timely preventive action |
+| Farmer        | I want tailored irrigation and fertilization advice based on the crop and location          |
+| Analyst       | I want access to weather data and predictions to monitor risks across different zones       |
+| Administrator | I want to manage system users and roles for secure access control                           |
+| Administrator | I want to view system usage statistics and generate global reports                          |
+
+---
+
+## 🗂️ Initial Database Architecture
+
+The system was modeled using a 10-step methodology to design entities, attributes, and relationships.
+
+### Main Entities
+- `User`, `Agriculture_Field`, `Crop`, `Location`, `Prediction`, `Alert`, `Recommendation`, `Weather_Station`, `Weather_Data`, `Event_Type`, `Severity_Level`, `Model`, `Data_Source`
+
+### Relationships
+- 1:N — User → Fields, Alerts  
+- 1:N — Prediction → Alerts, Recommendations  
+- N:M — Weather Station ↔ Data Source (handled via associative entity)
+
+### Key Features
+- Role-based access
+- Geographic linkage of fields and weather stations
+- Trackable predictions and alerts
+- Modular and scalable schema
+
+###Entity-Relationship Diagram (ERD):
 ![alt text](https://github.com/andrestorresaioros/Databases-II/blob/main/Workshop%20%231/Initial%20Database%20Architecture/MER.png)
 
+
+
+##Workshop No. 2
+## AgroClima: Data System Architecture and Information Retrieval
+
 ---
 
-## **System Architecture**
+## System Architecture Overview
 
-The AgroClimaIQ platform follows a layered architecture that supports:
+AgroClima is designed as a scalable, layered, data-driven platform that supports real-time ingestion, processing, storage, and delivery of agro-climatic intelligence. Its modular design allows continuous integration of external sources, predictive model execution, and responsive user interfaces for decision-making at field and institutional levels.
 
-- Continuous data ingestion via external APIs and synthetic generators (e.g., OpenWeather, NOAA, Python scripts).
-- Real-time and batch processing using Apache Spark and internal scripts.
-- Structured data storage in PostgreSQL and semi-structured storage in MongoDB.
-- Data lake for raw climate archives (e.g., Amazon S3, HDFS).
-- Business Intelligence module using Metabase or Apache Superset.
-- REST and GraphQL APIs developed with FastAPI.
-- Frontend interfaces built with React and secured via JWT/OAuth2.
-- Optional Redis for caching frequent predictions and alerts.
+---
+
+## Architecture Layers
+
+### 1. Data Sources Layer
+- **Role**: Entry point for all weather/climate/agricultural data.
+- **Components**:
+  - External APIs: OpenWeather, NOAA, OpenMeteo
+  - Synthetic data via Python (Faker, NumPy, Pandas)
+- **Interaction**: Scheduled or real-time data sent to ingestion layer
+
+### 2. Data Ingestion Layer
+- **Role**: Normalize, validate, and route data
+- **Technology**: Apache Kafka for high-throughput, decoupled streaming
+- **Destination**: Structured → PostgreSQL; Semi/unstructured → MongoDB
+
+### 3. Data Storage Layer
+- **Role**: Store raw and refined data
+- **Technologies**:
+  - PostgreSQL (structured: users, predictions, alerts)
+  - Optional Data Lake: Amazon S3 or HDFS for bulk historical data
+
+### 4. Data Processing & Intelligence Layer
+- **Role**: Execute ML models, detect anomalies, forecast risks
+- **Interaction**: Read/write to PostgreSQL via internal scripts
+
+### 5. Business Intelligence (BI) Module
+- **Role**: Support strategic decision-making via dashboards
+- **Technologies**:
+  - SQL queries, materialized views from PostgreSQL
+  - Log-based visualizations from MongoDB
+
+### 6. Application & Serving Layer
+- **Role**: Expose APIs, manage business logic and sessions
+- **Technologies**:
+  - FastAPI (REST/GraphQL)
+  - Backend access control, Redis (optional cache)
+
+### 7. Frontend / Access Layer
+- **Role**: Interface for farmers, analysts, and admins
+- **Technology**: Responsive React dashboards
+
+---
 ### **High-level Architecture Diagram**:
-![alt text](https://github.com/andrestorresaioros/Databases-II/blob/main/Workshop%20%232/Data%20System%20Architecture/Diagram.png)
+![alt text](https://github.com/andrestorresaioros/Databases-II/blob/main/Workshop%20%232/Data%20System%20Architecture/Arquitectura%20BS2.png)
 
 
 
