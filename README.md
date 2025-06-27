@@ -149,7 +149,7 @@ High and medium priorities were assigned collaboratively with developers and pil
 
 ---
 
-## 👥 User Stories
+## User Stories
 
 | Role          | Story                                                                                       |
 |---------------|----------------------------------------------------------------------------------------------|
@@ -161,7 +161,7 @@ High and medium priorities were assigned collaboratively with developers and pil
 
 ---
 
-## 🗂️ Initial Database Architecture
+## Initial Database Architecture
 
 The system was modeled using a 10-step methodology to design entities, attributes, and relationships.
 
