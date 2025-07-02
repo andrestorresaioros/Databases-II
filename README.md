@@ -124,7 +124,7 @@ High and medium priorities were assigned collaboratively with developers and pil
 
 ---
 
-## 📈 Performance and Capacity Analysis
+## Performance and Capacity Analysis
 
 ### System Assumptions
 - 2,000 users in Year 1
