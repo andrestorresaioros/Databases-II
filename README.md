@@ -325,7 +325,179 @@ db.api_responses.find({
   timestamp: { $gte: ISODate("2025-05-27T00:00:00Z") }
 }).sort({ timestamp: -1 }).limit(10);
 ```
+## Final Project
+# AgroClima: Climate Monitoring and Agricultural Prediction Platform
 
+AgroClima is a distributed system designed to support climate monitoring and risk prediction for agricultural fields. It integrates real-time weather data ingestion, machine learning-based predictions, and rule-based recommendations to assist farmers and analysts in decision-making.
+
+---
+
+## Project Overview
+
+This platform allows you to:
+
+- Collect real-time weather data from public APIs (e.g., OpenWeather).
+- Store data in a structured PostgreSQL database (hosted on Railway).
+- Automate data ingestion using schedulers or loops.
+- Generate weather-based predictions using basic machine learning rules.
+- Issue recommendations and alerts based on predicted climate risks.
+- Visualize all information via an interactive dashboard built with Streamlit.
+
+---
+
+## Database Structure (`AgroClimaDB.sql`)
+
+The system uses **PostgreSQL**, deployed on **Railway**, as the main relational database.
+
+### Main Tables:
+
+- **User**: System users (`admin`, `analyst`, `client`).
+- **Location**: Geographical areas (name, coordinates, type).
+- **Agriculture_field**: Fields linked to users.
+- **Crop**: Crop types planted per field.
+- **Weather_Station**: Linked to physical locations.
+- **Weather_Data**: Temperature, humidity, wind data records.
+- **Data_source**: API providers like OpenWeather.
+- **Weather_data_source**: Links stations and data sources.
+- **Event_type**: Risk events like droughts, floods, etc.
+- **Prediction**: Forecasted events with probabilities.
+- **Alert**: Notifications sent to users.
+- **Recommendation**: Suggested actions per prediction.
+
+### Tools used:
+
+- **Railway** (PostgreSQL hosting)
+- **DBeaver** (SQL script execution and schema management)
+
+---
+
+## Tracked Weather Events
+
+The platform models five types of climate events that affect agriculture:
+
+| Event      | Description                                                                 |
+|------------|-----------------------------------------------------------------------------|
+| Drought    | Extended period of low rainfall, affecting crops and water availability     |
+| Flood      | Excessive rainfall causing overflow or field saturation                     |
+| Landslide  | Slope instability due to intense rain, common in hilly zones                |
+| Hailstorm  | Storms with hail that may damage crops and infrastructure                   |
+| Frost      | Nighttime cold spells that freeze plants, especially in high-altitude zones |
+
+---
+
+## Python Setup & Virtual Environment
+
+```bash
+python -m venv venv
+source venv/bin/activate     # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### Required libraries:
+
+- `requests`
+- `psycopg2`
+- `pandas`
+- `streamlit`
+
+---
+
+## Weather Data Ingestion (`ingest_openweather.py`)
+
+Fetches live data from OpenWeather and stores it in the database.
+
+### How it works:
+
+1. Calls OpenWeather API for temperature, humidity, wind speed, etc.
+2. Ensures the location and station exist in the DB.
+3. Inserts a new row in `Weather_Data`.
+4. Loops 100 times with 2-second delays to simulate real-time ingestion.
+
+### Run:
+
+```bash
+python ingest_openweather.py
+```
+
+---
+
+## Event Prediction (`event_prediction.py`)
+
+This script processes aggregated weather data and classifies possible climate events based on predefined conditions using basic rule-based logic.
+
+### How it works:
+
+1. Fetches weather records from the database and aggregates daily means by location.
+2. Applies rule-based logic to detect events like Drought, Flood, Frost, etc.
+3. Calculates a severity-based probability (between 0 and 1) for each predicted event.
+4. Inserts predictions into the `Prediction` table in the database.
+
+### Detected Events:
+
+- **Frost**: Temp ≤ 0°C, Humidity ≥ 80%, Wind < 5
+- **Hailstorm**: Wind ≥ 25, Temp 0–15°C, Humidity 60–90%
+- **Landslide**: Humidity > 90%, Temp < 15°C, Wind ≥ 5
+- **Flood**: Humidity > 85%, Temp > 5°C, Wind ≥ 3
+- **Drought**: Temp > 30°C, Humidity < 30%, Wind > 5
+
+### Run:
+
+```bash
+python event_prediction.py
+```
+
+This will populate the `Prediction` table based on recent weather data.
+
+---
+
+## Recommendation Generator (`recommendation_generator.py`)
+
+Generates tailored advice for predictions that don’t yet have a recommendation.
+
+### Example strategies:
+
+- **Drought** → Consider irrigation or drought-resistant crops.
+- **Flood** → Prepare drainage systems and avoid planting in low areas.
+- **Landslide** → Avoid field work in sloped areas; reinforce slopes.
+- **Hailstorm** → Install protective nets or delay planting.
+- **Frost** → Use plastic covers or early-harvest strategies.
+
+### Run:
+
+```bash
+python recommendation_generator.py
+```
+
+---
+
+## Web Dashboard with Streamlit (`climate_dashboard.py`)
+
+Visualizes predictions and recommendations in a responsive web app.
+
+### Features:
+
+- Displays a complete table of predictions with event types, locations, probabilities, and recommendations.
+- Sidebar filters by location and event type.
+- Responsive layout using Streamlit.
+
+### Run:
+
+```bash
+streamlit run climate_dashboard.py
+```
+
+Make sure your database is running and accessible.
+
+---
+
+## Status
+
+- Database schema defined and deployed via Railway  
+- Real-time ingestion from OpenWeather API  
+- Recommendation logic implemented  
+- Interactive dashboard functional  
+
+---
 ---
 ## video
 https://drive.google.com/file/d/1JC0PaLH88czyGFrcopBVIsWXGEAf6JH1/view?usp=sharing
